@@ -1,0 +1,113 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-saffron: var(--saffron);
+  --color-vermilion: var(--vermilion);
+  --color-ink: var(--ink);
+  --font-display: "DM Serif Display", Georgia, serif;
+  --font-sans: "Manrope", sans-serif;
+  --font-desi: "Yatra One", "Rozha One", "DM Serif Display", serif;
+}
+
+:root {
+  --radius: 0.125rem;
+  --saffron: oklch(0.9 0.19 91);
+  --vermilion: oklch(0.47 0.2 30);
+  --ink: oklch(0.18 0.06 35);
+  --background: var(--saffron);
+  --foreground: var(--ink);
+  --card: var(--saffron);
+  --card-foreground: var(--ink);
+  --popover: var(--saffron);
+  --popover-foreground: var(--ink);
+  --primary: var(--vermilion);
+  --primary-foreground: var(--saffron);
+  --secondary: oklch(0.91 0.15 92);
+  --secondary-foreground: var(--ink);
+  --muted: oklch(0.91 0.15 92);
+  --muted-foreground: oklch(0.42 0.08 43);
+  --accent: var(--vermilion);
+  --accent-foreground: var(--saffron);
+  --destructive: var(--vermilion);
+  --destructive-foreground: var(--saffron);
+  --border: oklch(0.45 0.15 30 / 30%);
+  --input: oklch(0.98 0.1 95 / 20%);
+  --ring: var(--vermilion);
+}
+
+.dark {
+  --background: var(--ink);
+  --foreground: var(--saffron);
+  --card: var(--ink);
+  --card-foreground: var(--saffron);
+  --popover: var(--ink);
+  --popover-foreground: var(--saffron);
+  --primary: var(--saffron);
+  --primary-foreground: var(--ink);
+  --secondary: oklch(0.28 0.04 35);
+  --secondary-foreground: var(--saffron);
+  --muted: oklch(0.28 0.04 35);
+  --muted-foreground: oklch(0.68 0.05 80);
+  --accent: var(--vermilion);
+  --accent-foreground: var(--saffron);
+  --destructive: var(--vermilion);
+  --destructive-foreground: var(--saffron);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: var(--saffron);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body { background-color: var(--color-background); color: var(--color-foreground); font-family: var(--font-sans); }
+}
+
+@keyframes float { 0%, 100% { transform: translateY(0) rotate(1deg); } 50% { transform: translateY(-10px) rotate(-1deg); } }
+@keyframes fade-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes turn-slowly { to { transform: rotate(360deg); } }
+
+@utility animate-float { animation: float 6s ease-in-out infinite; }
+@utility animate-fade-in { animation: fade-in 0.7s ease-out both; }
+.font-desi { font-family: var(--font-desi), "Yatra One", "Rozha One", serif; }
+
+.mandala-lines { background-image: repeating-radial-gradient(circle at center, transparent 0 42px, var(--vermilion) 43px 44px, transparent 45px 78px); animation: turn-slowly 80s linear infinite; }
+.eyebrow { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase; }
+.story-link { position: relative; display: inline-block; }
+.story-link::after { position: absolute; bottom: -0.4rem; left: 0; height: 2px; width: 100%; background: currentColor; content: ""; transform: scaleX(0); transform-origin: right; transition: transform 250ms ease; }
+.story-link:hover::after { transform: scaleX(1); transform-origin: left; }
+.field-label { display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: color-mix(in oklab, var(--saffron) 70%, transparent); }
+.field-input { min-height: 3rem; border: 1px solid color-mix(in oklab, var(--saffron) 35%, transparent); border-radius: 0.125rem; background: color-mix(in oklab, var(--saffron) 7%, transparent); padding: 0.75rem 0.85rem; font-family: var(--font-sans); font-size: 0.9rem; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--saffron); outline: none; transition: border-color 180ms ease, background 180ms ease; }
+.field-input::placeholder { color: color-mix(in oklab, var(--saffron) 42%, transparent); }
+.field-input:focus { border-color: var(--saffron); background: color-mix(in oklab, var(--saffron) 13%, transparent); }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; } }

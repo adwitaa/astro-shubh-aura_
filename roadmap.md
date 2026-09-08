@@ -1,0 +1,4 @@
+- [x] Build Astro Shubh Aura home page with desi yellow-and-vermilion visual system
+- [x] Add working Kundali enquiry form with confirmation state
+- [x] Add astrology consultancy and Pooja Samagri sections
+- [ ] Verify responsive layout and preview diagnostics
